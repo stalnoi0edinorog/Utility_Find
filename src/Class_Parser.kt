@@ -4,21 +4,13 @@ import java.lang.StringBuilder
 
 data class Parser(val args: Array<String>){
 
-    fun isCmd(): Boolean {
-        val cmdLine = args.joinToString(separator = " ")
-        return cmdLine
-            .matches(Regex(
-                """find\s(-r|-d\s[A-Z]:(\\[^\\/:*?<>|]+)+|-r\s-d\s[A-Z]:(\\[^\\/:*?<>|]+)+)\s([^\\/:?<>|])+"""))
-                || cmdLine
-            .matches(Regex("""find\s(-r\s)?([^\\/:?<>|(-d)])+"""))
-    }
-
     fun r() = args.contains("-r")
 
     fun directory(): File {
+        val exceptionOfExistence = Exception()
         for (element in args) {
             if (element.contains(Regex("""^[CD]:\\""")) && !File(element).exists())
-                throw Exception()
+                throw exceptionOfExistence
             if (element.contains(Regex("""^[CD]:\\""")) && File(element).exists())
                 return File(element)
         }
