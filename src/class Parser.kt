@@ -9,9 +9,10 @@ data class Parser(val args: Array<String>){
             return true
 
         val i = args.indexOf("-d") + 1
-        val dirWindows = args[i].matches(Regex("""([A-Z]:|.)(\\|(\\([^\\/:*?<>|])+)+)""")) //Работает при условии, что в названиях директорий нет пробелов
+        val dirWindows = args[i].matches(
+            Regex("""([A-Z]:|\.)(\\|(\\([^\\/:*?<>|]+))+)""")) //Работает при условии, что в названиях директорий нет пробелов
         val dirLinux = args[i].matches(
-            Regex("""((/([^\\/:*?<>|])+)(/([^\\/:*?<>|])+)*|(~/|../)([^\\/:*?<>|])+(/([^\\/:*?<>|])+)*)"""))
+            Regex("""((/([^\\/:*?<>|])+)+|(~/|../)([^\\/:*?<>|])+(/([^\\/:*?<>|])+)*)"""))
         val flags = args[1].matches(Regex("""(-d|-r)"""))
 
         if (!find || !(dirWindows || dirLinux ) || !flags)

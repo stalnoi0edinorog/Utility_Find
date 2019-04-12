@@ -37,6 +37,10 @@ class Tests {
 
    @Test
    fun directory() {
+      assertThrows(CmdLineFormatException::class.java)
+      {Parser(arrayOf("find", "-r", "-d", "<\\Users\\Julia\\IdeaProjects","Тихий", "Дон" )).directory()}
+
+
       assertEquals(
          File("."),
          Parser(arrayOf("find", "-r", "У", "нас", "всегда", "будет", "Париж")).directory())
@@ -44,8 +48,6 @@ class Tests {
       assertThrows(CmdLineFormatException::class.java)
       {Parser(arrayOf("find", "-rа", "-d", "C:\\Users\\Julia\\IdeaProjects", "Старуха", "Изергиль")).directory()}
 
-      assertThrows(CmdLineFormatException::class.java)
-      {Parser(arrayOf("find", "-r", "-d", "<\\Users\\Julia\\IdeaProjects","Тихий", "Дон" )).directory()}
 
       assertThrows(CmdLineFormatException::class.java)
       {Parser(arrayOf("find", "-r", "Мистер:", "Исключительный")).directory()}
