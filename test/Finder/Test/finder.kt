@@ -26,6 +26,13 @@ class Tests {
             FoundFiles("люб", true).finder(File(".")))
 
         assertEquals((listOf
+            (".\\input.poetry\\А.Пушкин\\Тадарашка в вас влюблён....txt",
+            ".\\input.poetry\\А.Пушкин\\Я вас любил....txt",
+            ".\\input.poetry\\А.Пушкин\\Я не люблю твоей Корины....txt",
+            ".\\input.poetry\\Н.Гумилёв\\И.Бродский\\Я вас любил....txt")),
+            FoundFiles("люб", true).finder(File(".\\input.poetry")))
+
+        assertEquals((listOf
             ("C:\\Users\\Julia\\IdeaProjects\\SecondTask(Find)\\input.poetry\\Н.Гумилёв\\Девочка.txt")),
             FoundFiles("Девочка", false)
                 .finder(File("C:\\Users\\Julia\\IdeaProjects\\SecondTask(Find)\\input.poetry\\Н.Гумилёв")))

@@ -1,23 +1,24 @@
+import java.io.File
 
 fun main(args: Array<String>) {
     val parser = Parser(args)
     var foundFiles = listOf<String>()
+    val directory = File(parser.directory())
 
     if (!parser.isCmd()){
         println("FIND: НЕПРАВИЛЬНЫЙ ФОРМАТ ПАРАМЕТРА")
         return
     }
-    if (!parser.directory().exists()){
-        println("FIND: ДИРЕКТОРИЯ НЕ СУЩЕСТВУЕТ")
+    if (!directory.exists()){
+        println("FIND: ДИРЕКТОРИЯ НЕ НАЙДЕНА")
         return
     }
-    if (parser.directory().isDirectory)
-        foundFiles = FoundFiles( parser.fileName(), parser.r()).finder(parser.directory())
+    if (directory.isDirectory)
+        foundFiles = FoundFiles( parser.fileName(), parser.r()).finder(directory)
 
     if (foundFiles.isEmpty()){
         println("FIND: ФАЙЛ НЕ НАЙДЕН")
         return
     }
-
     println(foundFiles.joinToString(separator = "\n"))
 }
