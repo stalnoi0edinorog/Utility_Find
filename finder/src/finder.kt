@@ -7,8 +7,8 @@ class FoundFiles(fileName: String, val flagR: Boolean ) {
 
     fun finder(directory: File): List<String> {
         for (element in directory.listFiles()) {
-            if (regexFileName in element.toString())
-                foundFiles.add(element.toString())
+            if (element.name.contains(regexFileName))
+                foundFiles.add(element.path)
             if (element.isDirectory && flagR)
                 finder(element)
             }
