@@ -19,6 +19,7 @@ class Tests {
    @Test
    fun directory() {
       assertThrows(CmdLineFormatException::class.java) {Parser(arrayOf("-r", "C:\\"))}
+      assertThrows(CmdLineFormatException::class.java) {Parser(arrayOf("-m", "-n", "C:\\", "Я вас любил"))}
       assertThrows(CmdLineFormatException::class.java) {Parser(arrayOf("-d", "Письма незнакомке"))}
       assertThrows(CmdLineFormatException::class.java) {Parser(arrayOf("-r", "-m", "-d","C:\\"))}
       assertThrows(CmdLineFormatException::class.java) {Parser(arrayOf("-r", "-d","C:\\", "Онегин", "Тарас Бульба"))}
