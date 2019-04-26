@@ -1,3 +1,6 @@
+package finder
+
+import FoundFiles
 import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.test.assertEquals
@@ -44,7 +47,7 @@ class Tests {
                 .finder(File("C:\\Users\\Julia\\IdeaProjects\\SecondTask(Find)\\input poetry")))
 
         assertEquals((listOf()),
-            FoundFiles( "Я всегда твердил, что судьба - игра", false)
+            FoundFiles("Я всегда твердил, что судьба - игра", false)
                 .finder(File("C:\\Users\\Julia\\IdeaProjects\\SecondTask(Find)\\input poetry\\Н.Гумилёв")))
 
         assertEquals((listOf
